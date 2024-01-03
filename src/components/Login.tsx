@@ -1,16 +1,21 @@
 import React, {useState} from "react";
 import {login} from "../features/loggedUserSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../app/store";
+import { selectUsers } from "../features/UsersSlice";
 
 const Login = () => {
     const [email, setEmail] = useState("")
+    const users = useSelector(selectUsers)
 
     const dispatch = useDispatch<AppDispatch>()
     const handleLogin = (event: React.FormEvent) => {
         event.preventDefault()
-
-        dispatch(login(email))
+        if(users.find(user => user.email === email) !== undefined) {
+            dispatch(login(email))
+            return
+        }
+        console.log("User not found")
     }
 
     return (<div className="login">
