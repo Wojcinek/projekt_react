@@ -3,26 +3,25 @@ import {useDispatch, useSelector} from "react-redux";
 import { logout, selectUser } from "../features/loggedUserSlice";
 import { AppDispatch } from "../app/store";
 import { fetchPosts, selectPosts } from "../features/PostsSlice";
+import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Home = () => {
     const user = useSelector(selectUser)
     const dispatch = useDispatch<AppDispatch>()
-
+    const navigate = useNavigate()
     const posts = useSelector(selectPosts)
 
     useEffect(() => {
         dispatch(fetchPosts());}, [dispatch]);
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
+
 
     return(
         <div>
-            <h1>Welcome <span>{user.loggedUser?.name}</span></h1>
-            <button onClick={handleLogout}>Logout</button>
-            <div>
-                <span>posts</span>
+            <NavBar/>
+            <main>
+                <div>
                 {posts.map((post) => (
                     <div key={post.id}>
                         <h3>{post.title}</h3>
@@ -30,6 +29,7 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+            </main>
         </div>
     )
 }
