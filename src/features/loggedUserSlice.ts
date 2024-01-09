@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
+import { User } from "../model/User";
 
 interface LoggedUserState{
-    loggedUser: string | null
+    loggedUser: User | null
 }
 
 const initialState: LoggedUserState = {
