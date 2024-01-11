@@ -10,12 +10,14 @@ import { fetchPosts } from './features/PostsSlice'
 import { fetchComments } from './features/CommentsSlice'
 import { fetchAlbums } from './features/AlbumsSlice'
 import { fetchPhotos } from './features/PhotosSlice'
+import { fetchTodos } from './features/TodosSlice'
 
 store.dispatch(fetchUsers())
 store.dispatch(fetchPosts())
 store.dispatch(fetchComments())
 store.dispatch(fetchAlbums())
 store.dispatch(fetchPhotos())
+store.dispatch(fetchTodos())
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>

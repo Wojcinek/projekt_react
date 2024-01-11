@@ -8,6 +8,7 @@ import NavBar from './NavBar'
 import { addPost } from '../features/PostsSlice'
 import UserPortfolio from './UserPortfolio'
 import { selectUsers } from '../features/UsersSlice'
+import CommentsComponent from './CommentsComponents'
 
 const Home = () => {
 	const user = useSelector(selectUser).loggedUser
@@ -73,15 +74,18 @@ const Home = () => {
 						<div
 							className='p-6 max-w-xll bg-gray-100 drop-shadow-xl rounded-lg border-2 border-gray-400 mx-5 mb-3'
 							key={post.id}>
-							<div className='p-1 bg-stone-300 rounded-lg text-center text-xl italic '>
-								<h3>{post.title}</h3>
-							</div>
 							<div className='flex w-full'>
 								<UserPortfolio user={getUser(post.userId)} />
+							</div>
+							<div className='p-1 bg-stone-300 rounded-lg text-center text-xl'>
+								<h3>{post.title}</h3>
 							</div>
 							<div className='p-4 text-center text-sm '>
 								<p>{post.body}</p>
 								<div className='w-fit ease-in-out mt-5 px-1 py-1 rounded-lg hover:bg-gray-600 hover:text-white'></div>
+							</div>
+							<div className='' id={'post' + post.id + 'Comments'} data-te-collapse-item>
+								<CommentsComponent postId={post.id} />
 							</div>
 						</div>
 					))}

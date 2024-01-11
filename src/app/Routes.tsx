@@ -3,6 +3,7 @@ import NotFound from '../components/NotFound'
 import Login from '../components/Login'
 import Home from '../components/Home'
 import Albums from '../components/AlbumsPage'
+import Todos from '../components/TodosPage'
 
 export const routes = createBrowserRouter([
 	{
@@ -20,5 +21,9 @@ export const routes = createBrowserRouter([
 	{
 		path: '/albums',
 		element: <Albums />,
+	},
+	{
+		path: '/todos',
+		element: <Todos />,
 	},
 ])

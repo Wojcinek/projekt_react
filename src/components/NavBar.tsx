@@ -19,7 +19,7 @@ const NavBar = () => {
 	const navigation = [
 		{ name: 'Posts', path: '/home', active: '/home' == location.pathname },
 		{ name: 'Albums', path: '/albums', active: '/albums' == location.pathname },
-		{ name: 'ToDo', path: '/todo', active: '/todo' == location.pathname },
+		{ name: 'ToDo', path: '/todos', active: '/todos' == location.pathname },
 	]
 
 	function classNames(...classes: string[]) {
@@ -38,7 +38,7 @@ const NavBar = () => {
 							<a
 								key={item.name}
 								className={classNames(
-									item.active ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+									item.active ? 'bg-gray-600 text-white' : 'text-white hover:bg-gray-600',
 									'rounded-md px-3 py-2 text-sm font-medium'
 								)}
 								aria-current={item.active ? 'page' : undefined}
