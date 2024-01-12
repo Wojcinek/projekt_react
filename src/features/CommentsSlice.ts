@@ -6,7 +6,7 @@ export interface CommentState {
 	comments: Comment[]
 }
 
-export interface AddComment {
+export interface AddCommentPayload {
 	postId: number
 	title: string
 	email: string | undefined
@@ -25,7 +25,7 @@ export const commentsSlice = createSlice({
 		comments: [],
 	},
 	reducers: {
-		addComment: (state: CommentState, action: PayloadAction<AddComment>) => {
+		addComment: (state: CommentState, action: PayloadAction<AddCommentPayload>) => {
 			if (action.payload.email === undefined) {
 				throw new Error('Email is undefined')
 			}

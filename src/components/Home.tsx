@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout, selectUser } from '../features/loggedUserSlice'
 import { AppDispatch } from '../app/store'
-import { fetchPosts, selectPosts } from '../features/PostsSlice'
+import { deletePost, fetchPosts, selectPosts } from '../features/PostsSlice'
 import { useNavigate } from 'react-router-dom'
 import NavBar from './NavBar'
 import { addPost } from '../features/PostsSlice'
@@ -22,7 +22,9 @@ const Home = () => {
 		event.preventDefault()
 		try {
 			dispatch(addPost({ userId: user?.id, title, body: text }))
-		} catch (e) {}
+		} catch (e) {
+			console.log('test')
+		}
 	}
 
 	useEffect(() => {
@@ -31,16 +33,16 @@ const Home = () => {
 		}
 	})
 
-	useEffect(() => {
-		dispatch(fetchPosts())
-	}, [dispatch])
-
 	const users = useSelector(selectUsers)
 
 	const getUser = (id: number) => {
 		let user = users.find((user) => user.id === id)
 		if (user !== undefined) return user
 		throw new Error('User not found')
+	}
+
+	const handleDeletePost = (postId: number) => {
+		dispatch(deletePost(postId))
 	}
 
 	return (
@@ -76,6 +78,9 @@ const Home = () => {
 							key={post.id}>
 							<div className='flex w-full'>
 								<UserPortfolio user={getUser(post.userId)} />
+							</div>
+							<div>
+								<button onClick={() => handleDeletePost(post.id)}>Delete</button>
 							</div>
 							<div className='p-1 bg-stone-300 rounded-lg text-center text-xl'>
 								<h3>{post.title}</h3>
