@@ -56,7 +56,9 @@ const CommentsComponent: React.FC<CommentsProps> = ({ postId }) => {
 								<p className='text-sm text-gray-600'>{comment.body}</p>
 							</div>
 						</div>
-						<button className='hover:text-red-600' onClick={() => handleDeleteComment(comment.id)}>
+						<button
+							className='relative flex items-center gap-x-4 text-sm leading-6 font-semibold text-gray-400 hover:text-red-500'
+							onClick={() => handleDeleteComment(comment.id)}>
 							Delete
 						</button>
 					</li>

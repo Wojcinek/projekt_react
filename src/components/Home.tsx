@@ -77,10 +77,16 @@ const Home = () => {
 							className='p-6 max-w-xll bg-gray-100 drop-shadow-xl rounded-lg border-2 border-gray-400 mx-5 mb-3'
 							key={post.id}>
 							<div className='flex w-full'>
-								<UserPortfolio user={getUser(post.userId)} />
-							</div>
-							<div>
-								<button onClick={() => handleDeletePost(post.id)}>Delete</button>
+								<div>
+									<UserPortfolio user={getUser(post.userId)} />
+								</div>
+								<div>
+									<button
+										className='mx-5 relative flex items-center gap-x-4 text-sm leading-6 font-semibold text-gray-400 hover:text-red-500'
+										onClick={() => handleDeletePost(post.id)}>
+										Delete
+									</button>
+								</div>
 							</div>
 							<div className='p-1 bg-stone-300 rounded-lg text-center text-xl'>
 								<h3>{post.title}</h3>

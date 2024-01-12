@@ -4,6 +4,7 @@ import Login from '../components/Login'
 import Home from '../components/Home'
 import Albums from '../components/AlbumsPage'
 import Todos from '../components/TodosPage'
+import Register from '../components/Register'
 
 export const routes = createBrowserRouter([
 	{
@@ -25,5 +26,9 @@ export const routes = createBrowserRouter([
 	{
 		path: '/todos',
 		element: <Todos />,
+	},
+	{
+		path: '/register',
+		element: <Register />,
 	},
 ])
