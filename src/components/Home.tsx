@@ -20,6 +20,9 @@ const Home = () => {
 
 	const handleAddPost = (event: React.FormEvent) => {
 		event.preventDefault()
+		if (title == '' || text == '') {
+			return
+		}
 		try {
 			dispatch(addPost({ userId: user?.id, title, body: text }))
 		} catch (e) {
@@ -45,6 +48,10 @@ const Home = () => {
 		dispatch(deletePost(postId))
 	}
 
+	const isLoggedUserAutor = (userId: number) => {
+		return userId === user?.id
+	}
+
 	return (
 		<div>
 			<NavBar />
@@ -64,8 +71,8 @@ const Home = () => {
 								</div>
 							</div>
 						</div>
-						<div className='max-w-sm mx-auto items-center justify-centerb bg-gray-300 rounded-r-lg hover:bg-gray-600 mt-3'>
-							<button type='submit' className='w-full h-full'>
+						<div className='max-w-sm mx-auto items-center justify-centerb bg-gray-300 rounded hover:bg-gray-600 mt-3 hover:text-white'>
+							<button type='submit' className='w-full h-full text-sm font-semibold'>
 								Add
 							</button>
 						</div>
@@ -74,18 +81,22 @@ const Home = () => {
 				<div>
 					{posts.map((post) => (
 						<div
-							className='p-6 max-w-xll bg-gray-100 drop-shadow-xl rounded-lg border-2 border-gray-400 mx-5 mb-3'
+							className='p-6 max-w-xll bg-gray-100 drop-shadow-xl roundedborder-2 border-gray-400 mx-5 mb-3'
 							key={post.id}>
 							<div className='flex w-full'>
 								<div>
 									<UserPortfolio user={getUser(post.userId)} />
 								</div>
 								<div>
-									<button
-										className='mx-5 relative flex items-center gap-x-4 text-sm leading-6 font-semibold text-gray-400 hover:text-red-500'
-										onClick={() => handleDeletePost(post.id)}>
-										Delete
-									</button>
+									{isLoggedUserAutor(post.userId) ? (
+										<button
+											className='mx-5 relative flex items-center gap-x-4 text-sm leading-6 font-semibold text-gray-400 hover:text-red-500'
+											onClick={() => handleDeletePost(post.userId)}>
+											Delete
+										</button>
+									) : (
+										''
+									)}
 								</div>
 							</div>
 							<div className='p-1 bg-stone-300 rounded-lg text-center text-xl'>
